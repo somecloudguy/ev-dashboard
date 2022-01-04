@@ -78,7 +78,7 @@ CREATE TABLE ev_usage(
 ```
 * Load data from S3
 ```
-LOAD DATA FROM S3 's3://deskaran-ev/ev_usage.csv'
+LOAD DATA FROM S3 's3://S3_BUCKET_NAME/FILENAME.csv'
 INTO TABLE ev_usage
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
@@ -91,7 +91,7 @@ ORDER BY charge_id;
 ```
 * Delete a row from database table
 ```
-DELETE FROM ev_charging WHERE charge_id='73';
+DELETE FROM ev_charging WHERE charge_id='99';
 ```
 
 ## Disclaimer: 
