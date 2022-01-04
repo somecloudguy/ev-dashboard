@@ -2,6 +2,8 @@
 
 When I purchased an electric vehicle (EV), I decided to maintain a detailed log of every charging and every usage of the car. This was initially done in an Excel sheet but to make it scalable, highly-available, and easy to view from anywhere, I have created this dashboard that can be deployed on AWS and made available either as a public link or restricted only to specific viewers.
 
+<img src="https://github.com/somecloudguy/ev-dashboard/blob/main/screenshots/ss2.jpeg" width="200">   <img src="https://github.com/somecloudguy/ev-dashboard/blob/main/screenshots/ss4.jpeg" width="200">   <img src="https://github.com/somecloudguy/ev-dashboard/blob/main/screenshots/ss1.jpeg" width="200">   <img src="https://github.com/somecloudguy/ev-dashboard/blob/main/screenshots/ss3.jpeg" width="200">
+
 ## The Architecture
 
 * Frontend is a single page PHP website hosted on an Amazon EC2 instance.
