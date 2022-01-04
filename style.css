@@ -1,0 +1,46 @@
+/* CSS for index.php of EV charging and usage dashboard */
+
+.container {  
+  max-width: 1350px;  
+  width: 100%;  
+  margin: 50px;  
+  height: auto;  
+  display: block;  
+}  
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  font-size: 20px;
+  font-family: Verdana, Arial, Helvetica, monospace;
+}
+  
+body {  
+  color: #000000;  
+  font-size: 20px;  
+  font-family: Verdana, Arial, Helvetica, monospace;  
+  background-color: #FFFFFF;  
+}  
+  
+h2, h3 {  
+  text-align: center;  
+}
+
+input {  
+  text-align: center;  
+}   
+  
+.form_group {  
+  padding: 10px;      
+  display: block;  
+}  
+  
+label {  
+  float: left;  
+  padding-right: 50px;  
+  line-height: 10%;  
+  display: block;  
+  width: 400px;  
+}   
