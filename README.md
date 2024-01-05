@@ -33,9 +33,9 @@ When I purchased an electric vehicle (EV), I decided to maintain a detailed log 
 5. Create an EC2 instance, install Apache web server on it, and upload all downloaded files to /var/www/html directory
 7. Create a Cloudfront distribution and enter the public DNS of the EC2 instance as the Origin, forward requests over HTTP only
 8. Update security groups to establish connectivity between Cloudfront, EC2, RDS and QuickSight
-  a. EC2 security group should allow inbound access on port 80 from Cloudfront managed IP prefix only, and port 22 from your personal IP
-  b. Aurora security group should allow inbound access on port 3306 from your personal IP, from EC2's security group, and from QuickSight's CIDR for the AWS region you are using. You can find QuickSight CIDR from AWS documentation
-9. Create a new Quicksight dataset from Aurora as the data source, and create a new analysis using this dataset
+   - EC2 security group should allow inbound access on port 80 from Cloudfront managed IP prefix only, and port 22 from your personal IP
+   - Aurora security group should allow inbound access on port 3306 from your personal IP, from EC2's security group, and from QuickSight's CIDR for the AWS region you are using. You can find QuickSight CIDR from AWS documentation
+10. Create a new Quicksight dataset from Aurora as the data source, and create a new analysis using this dataset
 
 ## Tips and Troubleshooting
 
