@@ -7,7 +7,7 @@ When I purchased an electric vehicle (EV), I decided to maintain a detailed log 
 ## The Architecture
 
 * Frontend is a single page PHP website hosted on an Amazon EC2 instance.
-* Database is an Amazon Aurora RDS MySQL cluster.
+* Database is an Amazon Aurora RDS MySQL cluster. 
 * Historic data from Excel sheets is uploaded to Amazon S3 as CSV files and loaded into the database using Aurora's 'Load from S3' capability.
 * New data is written directly into MySQL database from the web frontend.
 * Website is delivered using Amazon CloudFront with AWS WAF Managed rules applied on it.
@@ -25,6 +25,18 @@ When I purchased an electric vehicle (EV), I decided to maintain a detailed log 
 * select_usage.php contains the code to fetch usage data from database
 * ev_charging.csv and ev_usage.csv contain sample data in the format used for the database tables defined in this project
 
+## Implementation Steps
+1. Download all files from this Github repository to your local machine
+2. Create an Aurora cluster, note the database username, password, and endpoint URL 
+3. Follow instructions from SQL queries section below to set up initial database tables. You can use MySQL Workbench to connect to the Aurora database from your local machine
+4. Update db_charging.php and db_usage.php files you just downloaded with the database credentials
+5. Create an EC2 instance, install Apache web server on it, and upload all downloaded files to /var/www/html directory
+7. Create a Cloudfront distribution and enter the public DNS of the EC2 instance as the Origin, forward requests over HTTP only
+8. Update security groups to establish connectivity between Cloudfront, EC2, RDS and QuickSight
+  a. EC2 security group should allow inbound access on port 80 from Cloudfront managed IP prefix only, and port 22 from your personal IP
+  b. Aurora security group should allow inbound access on port 3306 from your personal IP, from EC2's security group, and from QuickSight's CIDR for the AWS region you are using. You can find QuickSight CIDR from AWS documentation
+9. Create a new Quicksight dataset from Aurora as the data source, and create a new analysis using this dataset
+
 ## Tips and Troubleshooting
 
 * Search for AWS documentation for each step of the build and follow the instructions from them without skipping steps
@@ -34,7 +46,11 @@ When I purchased an electric vehicle (EV), I decided to maintain a detailed log 
 * Remember to use a custom parameter group for Aurora cluster and update the parameters with S3 ARN as per AWS docs
 * If using MySQL Workbench from local machine to run SQL queries on Aurora, remember to update Security Group to allow port 3306 from local IP
 * Allow POST method on Cloudfront and disable standard caching rules for the database queries to work correctly
-* Quicksight dashboards are not public, cannot embed them in a public website. Only people with a Quicksight account can view them
+* Quicksight dashboard is not public. Only people with a Quicksight account can view them
+* If Quicksight is unable to refresh data, make sure your Aurora cluster has Quicksight CIDR added to its security group
+* If website is unable to insert data into database, check security group and table schema. It should match exactly the order and names written in insert_usage.php and insert_charging.php files
+* To check if DB is updating with latest data, login to DB using MySQL Workbench on local machine and check tables
+* If Cloudfront returns 500 error, most likely it is because it auto-selected “HTTPS only” for connection to EC2. Change it to “HTTP only”
 
 ## Sample SQL queries to set up the database initially
 
